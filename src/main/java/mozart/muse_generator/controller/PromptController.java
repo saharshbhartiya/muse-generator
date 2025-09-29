@@ -1,5 +1,6 @@
 package mozart.muse_generator.controller;
 
+import mozart.muse_generator.dto.MusicPromptDto;
 import mozart.muse_generator.service.MusicPromptService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +14,12 @@ public class PromptController {
     public PromptController(MusicPromptService musicPromptService){
         this.musicPromptService = musicPromptService;
     }
+    @GetMapping("/")
+    public String showWelcomeMessage(){
+        return "Welcome to Muse Generator!";
+    }
     @GetMapping("/chords")
-    public String getChordPrompts(){
+    public MusicPromptDto getChordPrompt(){
         return musicPromptService.getChordProgression();
     }
 }
